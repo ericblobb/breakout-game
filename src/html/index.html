@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Gamedev Canvas Workshop</title>
@@ -11,51 +12,57 @@
 
 		canvas {
 			background: #eee;
+			display: block;
 			margin: 0 auto;
 		}
+		
 	</style>
 </head>
+
 <body>
 
-<canvas id="myCanvas" width="480" height="320"></canvas>
+	<p>This is a test</p>
 
-<script>
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	<canvas id="myCanvas" width="480" height="320"></canvas>
 
-	var x = canvas.width / 2;
-	var y = canvas.height - 30;
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
 
-	var dx = -3;
-	var dy = -3;
+		var x = canvas.width / 2;
+		var y = canvas.height - 30;
 
-	var ballRadius = 10;
+		var dx = -3;
+		var dy = -3;
 
-	function drawBall() {
-		ctx.beginPath();
-		ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-		ctx.fillStyle = "#0095DD";
-		ctx.fill();
-		ctx.closePath();
-	}
+		var ballRadius = 10;
 
-	function draw() {
-		//drawing code
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		drawBall();
-		x += dx;
-		y += dy;
-
-		if (y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
-			dy = -dy;
+		function drawBall() {
+			ctx.beginPath();
+			ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.closePath();
 		}
 
-		if (x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-			dx = -dx;
+		function draw() {
+			//drawing code
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			drawBall();
+			x += dx;
+			y += dy;
+
+			if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+				dy = -dy;
+			}
+
+			if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+				dx = -dx;
+			}
 		}
-	}
-	setInterval(draw, 10);
-</script>
+		setInterval(draw, 10);
+	</script>
 
 </body>
+
 </html>
