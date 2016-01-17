@@ -117,7 +117,7 @@
 
 		function drawPaddle() {
 			ctx.beginPath();
-			ctx.rect(paddleX, canvas.height-(2*paddleHeight), paddleWidth, paddleHeight)
+			ctx.rect(paddleX, canvas.height-(paddleHeight), paddleWidth, paddleHeight)
 			ctx.fill();
 			ctx.closePath();
 		}
@@ -154,7 +154,7 @@
 			if (y + dy < ballRadius) {
 				dy = -dy;
 			} 
-			else if (y > canvas.height-ballRadius-(2*paddleHeight)) {
+			else if (y > canvas.height-ballRadius-paddleHeight) {
 				if (x > paddleX && x < paddleX + paddleWidth) {
 					dy = -dy;
 				}
@@ -177,7 +177,13 @@
 			}
 
 		}
-
+		document.addEventListener("mousemove", mouseMoveHandler, false);
+		function mouseMoveHandler(e) {
+			var relativeX = e.clientX - canvas.offSetLeft;
+			if (relativeX) > 0 && relativeX < canvas.width) {
+				paddleX = relativeX - paddleWidth / 2;
+			}
+		}
 		setInterval(draw, 10);
 	</script>
 
